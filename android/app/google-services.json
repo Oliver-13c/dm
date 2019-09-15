@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1034124582766",
+    "firebase_url": "https://dif-dm.firebaseio.com",
+    "project_id": "dif-dm",
+    "storage_bucket": "dif-dm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034124582766:android:e2298087900facd063ab7f",
+        "android_client_info": {
+          "package_name": "com.example.dm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034124582766-g9k09l3mr9jaj4qlu3cvssn5aonpg52k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dm",
+            "certificate_hash": "0afcef01794376e31a05ce0124c4b9f7099bbb67"
+          }
+        },
+        {
+          "client_id": "1034124582766-bsp666c4fgbet602dd3l374uajr945mv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS2wrvd8uBxZ7nH7Knek4mZblYX4dqY_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034124582766-bsp666c4fgbet602dd3l374uajr945mv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
