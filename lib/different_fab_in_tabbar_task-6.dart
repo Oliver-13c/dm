@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:dm/DropDownButton.dart';
 
 import 'DropDownButton.dart';
 
@@ -109,6 +110,7 @@ class primeratab extends StatelessWidget{
             Container(
 
 
+
             )
           ],
         )
@@ -123,9 +125,11 @@ class segundatab extends StatelessWidget{
 
     // TODO: implement build
     return Container(
+
         child: Padding(
           padding: const EdgeInsets.all(19.0),
           child: Text('primer caso'),
+
         )
     );
   }
