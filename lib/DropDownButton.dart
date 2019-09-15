@@ -12,9 +12,7 @@ class DropDownMenu extends StatefulWidget {
 }
 
 class _DropDownMenuState extends State<DropDownMenu> {
-  List<String> _RozonVisita = ['Apoyo personas discapacitadas', 'Apoyo tercera endad',
-    'Asesoria Legal', 'Asistencia Social', 'Despensas', 'Terapia psicológica',
-    'Violencia Familiar', 'tro'];
+  List<String> _RozonVisita = ['Apoyo', 'tro'];
 
   var _currentItemSelected = "Razón de su visitaS";
 
