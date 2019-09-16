@@ -1,9 +1,13 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dm/DropDownButton.dart';
-
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 import 'DropDownButton.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DiffFABinTabbar extends StatefulWidget {
   @override
@@ -18,6 +22,14 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
   @override
   void initState() {
     super.initState();
+
+    Firestore.instance
+        .collection('Visitantes')
+        .where('Estado', isEqualTo: 'NL')
+        .snapshots()
+        .listen((data) =>
+        data.documents.forEach((doc) => print(doc['Phone'])));
+
     _tabController = TabController(
       length: 2,
       vsync: this,
@@ -102,12 +114,14 @@ class primeratab extends StatelessWidget{
     var screenWidth = MediaQuery.of(context).size.width;
 
 
+
     // TODO: implement build
 
     return Container(
         child: ListView(
           children: <Widget>[
             Container(
+
 
 
 
@@ -120,17 +134,14 @@ class primeratab extends StatelessWidget{
 
 class segundatab extends StatelessWidget{
 
+
   @override
   Widget build(BuildContext context) {
 
     // TODO: implement build
     return Container(
 
-        child: Padding(
-          padding: const EdgeInsets.all(19.0),
-          child: Text('primer caso'),
 
-        )
     );
   }
 }
