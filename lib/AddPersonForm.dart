@@ -35,16 +35,16 @@ class _AddPersonFormState extends State<AddPersonForm> {
   var R6 = 'Terapia psicológica';
   var R7 = 'Violencia Familiar';
   var R8 = 'Otro';
+  //varibles for the date picker
   final format = DateFormat("yyyy-MM-dd");
   var _BirtDateDay;
   var _BirtDateMonth;
   var _BirtDateYear;
-
-
-
-
-
-
+  // variables for gender drop down button
+  final G1 = 'Hombre';
+  final G2 = "Mujer";
+  final G3 ='Otro';
+  var _currentItemSelectedGender =  'Genero';
 
 
 
@@ -123,7 +123,51 @@ class _AddPersonFormState extends State<AddPersonForm> {
 
 
                 ),
-                Column( crossAxisAlignment: CrossAxisAlignment.start,
+
+              DropdownButton<String>(
+              items: [
+                DropdownMenuItem<String>(
+                  value: G1,
+                  child: Text(
+                    G1,
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: G2,
+                  child: Text(
+                    G2,
+                  ),
+                ),
+
+                DropdownMenuItem<String>(
+                  value: G3,
+                  child: Text(
+                    G3,
+                  ),
+                ),
+
+              ],
+              onChanged: (value) {
+                _currentItemSelectedGender = value;
+
+                setState(() {
+                });
+
+
+                print("value: $value");
+                print(_currentItemSelectedGender);
+              },
+              hint: Text(
+                _currentItemSelectedGender,
+                style: TextStyle(
+                  color: Colors.black87,
+                ),
+              ),
+            ),
+
+
+
+            Column( crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text('Fecha de nacimiento', textAlign: TextAlign.left,),
                     DateTimeField(
@@ -312,9 +356,6 @@ class _AddPersonFormState extends State<AddPersonForm> {
                   ),
 
 
-
-
-
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: RaisedButton(
@@ -341,6 +382,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
                           "BirtDateDay": _BirtDateDay,
                           "BirtDateMonth": _BirtDateMonth,
                           "BirtDateYear": _BirtDateYear,
+                          'Gender': _currentItemSelectedGender,
 
                         });
 
