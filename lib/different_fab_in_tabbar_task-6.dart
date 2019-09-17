@@ -1,13 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dm/DropDownButton.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:intl/intl.dart';
-import 'DropDownButton.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'TabPersonas.dart';
 
 class DiffFABinTabbar extends StatefulWidget {
   @override
@@ -23,14 +19,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
   void initState() {
     super.initState();
 
-    Firestore.instance
-        .collection('Visitantes')
-        .where('Estado', isEqualTo: 'NL')
-        .snapshots()
-        .listen((data) =>
-        data.documents.forEach((doc) => print(doc['Phone'])));
-
-    _tabController = TabController(
+      _tabController = TabController(
       length: 2,
       vsync: this,
       initialIndex: 0,
@@ -77,7 +66,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          primeratab(),
+          TabPeople(),
           segundatab(),
 
         ],
@@ -108,29 +97,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
   }
 }
 
-class primeratab extends StatelessWidget{
 
-  Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-
-
-
-    // TODO: implement build
-
-    return Container(
-        child: ListView(
-          children: <Widget>[
-            Container(
-
-
-
-
-            )
-          ],
-        )
-    );
-  }
-}
 
 class segundatab extends StatelessWidget{
 
