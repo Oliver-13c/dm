@@ -3,6 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 
 
@@ -12,78 +14,105 @@ class DropDownMenu extends StatefulWidget {
 }
 
 class _DropDownMenuState extends State<DropDownMenu> {
-  List<String> _RozonVisita = ['Apoyo personas discapacitadas', 'Apoyo tercera endad',
-    'Asesoria Legal', 'Asistencia Social', 'Despensas', 'Terapia psicológica',
-    'Violencia Familiar', 'tro'];
-
-  var _currentItemSelected = "Razón de su visitaS";
 
 
 
+  var  _currentItemSelected = 'Razón de su visita';
+  var R1 = 'Apoyo personas discapacitadas';
+  var R2 = 'Apoyo tercera endad';
+  var R3 = 'Asesoria Legal';
+  var R4 = 'Asistencia Social';
+  var R5 = 'Despensas';
+  var R6 = 'Terapia psicológica';
+  var R7 = 'Violencia Familiar';
+  var R8 = 'Otro';
 
   @override
   Widget build(BuildContext context) {
 
 
+    DropdownButton _hintDown() => DropdownButton<String>(
+      items: [
+        DropdownMenuItem<String>(
+          value: R1,
+          child: Text(
+            R1,
+          ),
+        ),
+        DropdownMenuItem<String>(
+          value: R2,
+          child: Text(
+            R2,
+          ),
+        ),
 
-    return DropdownButton<String>(
-      items: _RozonVisita.map((String dropDownStringItem){
-        return DropdownMenuItem<String>(
-          value: dropDownStringItem,
-            child: Text(dropDownStringItem),
-        );
-      }) .toList(),
-      onChanged: (String newValueSelected){
+        DropdownMenuItem<String>(
+          value: R3,
+          child: Text(
+            R3,
+          ),
+        ),
+        DropdownMenuItem<String>(
+          value: R4,
+          child: Text(
+            R4,
+          ),
+        ),
+
+        DropdownMenuItem<String>(
+          value: R5,
+          child: Text(
+            R5,
+          ),
+        ),
+        DropdownMenuItem<String>(
+          value: R6,
+          child: Text(
+            R6,
+          ),
+        ),
+
+        DropdownMenuItem<String>(
+          value: R7,
+          child: Text(
+            R7,
+          ),
+        ),
+        DropdownMenuItem<String>(
+          value: R8,
+          child: Text(
+            R8,
+          ),
+        ),
+      ],
+      onChanged: (value) {
+        _currentItemSelected = value;
+
         setState(() {
-          this._currentItemSelected = newValueSelected;
         });
+
+
+        print("value: $value");
+        print(_currentItemSelected);
       },
+      hint: Text(
+        _currentItemSelected,
+        style: TextStyle(
+          color: Colors.black87,
+        ),
+      ),
+    );
 
-      value: _currentItemSelected,
 
-        );
+    return Container(
+      child: Column(
+        children: <Widget>[
+          _hintDown()
+        ],
+      ),
 
-
-  }
-}
-
-
-class TestButton extends StatefulWidget {
-  @override
-  _TestButtonState createState() => _TestButtonState();
-}
-
-class _TestButtonState extends State<TestButton> {
-  List _RozonVisita = ['Apoyo personas discapacitadas', 'Apoyo tercera endad',
-    'Asesoria Legal', 'Asistencia Social', 'Despensas', 'Terapia psicológica',
-    'Violencia Familiar', 'tro'];
-
-  List<String>  _currencies = ['ApoyoPersonasU+00A0Discapacitadas', 'Dollars', 'Pounds', 'Others'];
-  var _currentItemSelected = 'Dollars';
-  @override
-  Widget build(BuildContext context) {
-    return  DropdownButton<String>(
-
-      items: _currencies.map((String dropDownStringItem) {
-        return DropdownMenuItem<String>(
-          value: dropDownStringItem,
-          child: Text(dropDownStringItem),
-        );
-      }).toList(),
-
-      onChanged: (String newValueSelected) {
-        // Your code to execute, when a menu item is selected from drop down
-        _onDropDownItemSelected(newValueSelected);
-      },
-
-      value: _currentItemSelected,
 
     );
-  }
-  void _onDropDownItemSelected(String newValueSelected) {
-    setState(() {
-      this._currentItemSelected = newValueSelected;
-    });
   }
 }
 

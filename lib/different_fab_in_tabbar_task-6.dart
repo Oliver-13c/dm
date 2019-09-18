@@ -1,8 +1,9 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'DropDownButton.dart';
-
+import 'TabPersonas.dart';
 
 class DiffFABinTabbar extends StatefulWidget {
   @override
@@ -17,7 +18,8 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
+
+      _tabController = TabController(
       length: 2,
       vsync: this,
       initialIndex: 0,
@@ -64,7 +66,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          primeratab(),
+          TabPeople(),
           segundatab(),
 
         ],
@@ -95,38 +97,18 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
   }
 }
 
-class primeratab extends StatelessWidget{
 
-  Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-
-
-    // TODO: implement build
-
-    return Container(
-        child: ListView(
-          children: <Widget>[
-            Container(
-
-
-            )
-          ],
-        )
-    );
-  }
-}
 
 class segundatab extends StatelessWidget{
+
 
   @override
   Widget build(BuildContext context) {
 
     // TODO: implement build
     return Container(
-        child: Padding(
-          padding: const EdgeInsets.all(19.0),
-          child: Text('primer caso'),
-        )
+
+
     );
   }
 }
