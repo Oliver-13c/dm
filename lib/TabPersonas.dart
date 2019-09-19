@@ -32,8 +32,17 @@ class _TabPeopleState extends State<TabPeople> {
       body: SafeArea(
 
         child: StreamBuilder<QuerySnapshot>(
+          stream: _query,
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> data){
-            return ListDisplay();
+            if (data.hasData){
+              return ListDisplay(
+                documents: data.data.documents,
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+
           },
         )
 

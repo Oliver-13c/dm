@@ -3,21 +3,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase/firebase.dart';
+
 
 class ListDisplay extends StatefulWidget {
+  final List<DocumentSnapshot> documents;
+  final Map<String, double> profile;
+
+
+  const ListDisplay({Key key, this.documents, this.profile,})
+      :
+
+      super(key: key);
   @override
   _ListDisplayState createState() => _ListDisplayState();
 }
 
 class _ListDisplayState extends State<ListDisplay> {
-  Stream<QuerySnapshot> _query;
+
 
 
   void initState(){
     super.initState();
-    _query  = Firestore.instance
-        .collection('Visitantes')
-        .snapshots();
 
   }
 
@@ -28,9 +35,6 @@ class _ListDisplayState extends State<ListDisplay> {
         _List()
 
       ],
-
-
-
     );
   }
   Widget _item(IconData icon, String nombre ){
@@ -50,9 +54,10 @@ class _ListDisplayState extends State<ListDisplay> {
 
 
   Widget _List(){
+    print(widget.documents);
     return Expanded(
       child: ListView.separated(
-        itemCount: 5,
+        itemCount:  5,
         itemBuilder: (BuildContext context, int index) =>  _item(FontAwesomeIcons.idCard, "Oliver Perez Gutierrez"),
         separatorBuilder: (BuildContext context, int index){
           return Container(
