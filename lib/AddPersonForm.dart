@@ -155,8 +155,8 @@ class _AddPersonFormState extends State<AddPersonForm> {
                 });
 
 
-                print("value: $value");
-                print(_currentItemSelectedGender);
+//                print("value: $value");
+//                print(_currentItemSelectedGender);
               },
               hint: Text(
                 _currentItemSelectedGender,
@@ -345,14 +345,14 @@ class _AddPersonFormState extends State<AddPersonForm> {
                   });
 
 
-                  print("value: $value");
-                            Firestore.instance
-                                .collection('Visitantes')
-                                .where('Estado', isEqualTo: 'NL')
-                                .snapshots()
-                                .listen((data) =>
-                                data.documents.forEach((doc) => print(doc.data)));
-                            print('hola');
+//                  print("value: $value");
+//                            Firestore.instance
+//                                .collection('Visitantes')
+//                                .where('Estado', isEqualTo: 'NL')
+//                                .snapshots()
+//                                .listen((data) =>
+//                                data.documents.forEach((doc) => print(doc.data)));
+//                            print('hola');
 
                   },
                     hint: Text (

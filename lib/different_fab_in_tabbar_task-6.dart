@@ -31,13 +31,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
 
 
       });
-      Firestore.instance
-          .collection('Visitantes')
-          .where("Estado", isEqualTo: "NL")
-          .snapshots()
-          .listen((data) =>
-          data.documents.forEach((doc) => print(doc['Colonia'])));
-      print('hola');
+
     });
 
 
