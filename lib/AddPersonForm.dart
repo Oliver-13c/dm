@@ -45,6 +45,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
   final G2 = "Mujer";
   final G3 ='Otro';
   var _currentItemSelectedGender =  'Genero';
+  var _Id=0;
 
 
 
@@ -345,6 +346,13 @@ class _AddPersonFormState extends State<AddPersonForm> {
 
 
                   print("value: $value");
+                            Firestore.instance
+                                .collection('Visitantes')
+                                .where('Estado', isEqualTo: 'NL')
+                                .snapshots()
+                                .listen((data) =>
+                                data.documents.forEach((doc) => print(doc.data)));
+                            print('hola');
 
                   },
                     hint: Text (
@@ -365,6 +373,9 @@ class _AddPersonFormState extends State<AddPersonForm> {
 
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a Snackbar.
+
+                        _Id = _Id +1;
+
                         Firestore.instance
                         .collection('Visitantes')
                         .document()
@@ -376,13 +387,13 @@ class _AddPersonFormState extends State<AddPersonForm> {
                           'Colonia': _Colonia.text,
                           'Municipio': _Municipio.text,
                           'Estado': _Estado.text,
-                          'BirthDate': _BirthDate.text,
                           "Reason": _currentItemSelected,
                           "Date": DateTime.now(),
                           "BirtDateDay": _BirtDateDay,
                           "BirtDateMonth": _BirtDateMonth,
                           "BirtDateYear": _BirtDateYear,
                           'Gender': _currentItemSelectedGender,
+                          'Id': _Id,
 
                         });
 

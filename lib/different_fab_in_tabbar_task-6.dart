@@ -12,6 +12,8 @@ class DiffFABinTabbar extends StatefulWidget {
 
 class _DiffFABinTabbarState extends State<DiffFABinTabbar>
     with SingleTickerProviderStateMixin {
+
+
   TabController _tabController;
 
 
@@ -19,12 +21,23 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
   void initState() {
     super.initState();
 
-      _tabController = TabController(
+
+    _tabController = TabController(
       length: 2,
       vsync: this,
       initialIndex: 0,
     )..addListener(() {
-      setState(() {});
+      setState(() {
+
+
+      });
+      Firestore.instance
+          .collection('Visitantes')
+          .where("Estado", isEqualTo: "NL")
+          .snapshots()
+          .listen((data) =>
+          data.documents.forEach((doc) => print(doc['Colonia'])));
+      print('hola');
     });
 
 
