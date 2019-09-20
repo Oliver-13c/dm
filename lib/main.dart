@@ -1,5 +1,6 @@
 import 'package:dm/Add_Case.dart';
 import 'package:dm/Add_Person.dart';
+import 'package:dm/ListPeaple.dart';
 import 'package:flutter/material.dart';
 import 'different_fab_in_tabbar_task-6.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/':(BuildContext) => DiffFABinTabbar(),
         '/AddPerson': (BuildContext context) => AddPerson(),
         '/AddCase': (BuildContext context) =>  AddCase(),
+        '/Details': (BuildContext context) => PepleDetails(),
       }
     );
   }

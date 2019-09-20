@@ -61,11 +61,11 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
           controller: _tabController,
           tabs: <Widget>[
             Tab(
-              text: "Personas",
+              text: "Expedientes",
 
             ),
             Tab(
-              text: "Casos",
+              text: "Seguimiento",
             ),
           ],
         ),

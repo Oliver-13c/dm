@@ -28,7 +28,9 @@ dependencies:
   url_launcher: ^5.1.2
   dropdown_menu: ^1.1.0
   flutter_datetime_picker: ^1.2.6
-  firebase: ^5.0.0
+  firebase_database: ^3.0.7
+  provider: ^3.1.0
+
 
 
 

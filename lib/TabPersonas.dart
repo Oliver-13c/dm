@@ -20,6 +20,7 @@ class _TabPeopleState extends State<TabPeople> {
     _query  = Firestore.instance
         .collection('Visitantes')
         .snapshots();
+    print(_query);
 
   }
 
