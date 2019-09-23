@@ -2,6 +2,7 @@ import 'package:dm/Add_Case.dart';
 import 'package:dm/Add_Person.dart';
 import 'package:dm/ListPeaple.dart';
 import 'package:flutter/material.dart';
+import 'Login/Login_page.dart';
 import 'different_fab_in_tabbar_task-6.dart';
 
 
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
       ),
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
       routes:{
-        '/':(BuildContext) => DiffFABinTabbar(),
+        '/': (BuildContext context) => LoginPage(),
+        '/DiffFABinTabbar':(BuildContext context) => DiffFABinTabbar(),
         '/AddPerson': (BuildContext context) => AddPerson(),
         '/AddCase': (BuildContext context) =>  AddCase(),
         '/Details': (BuildContext context) => PepleDetails(),
