@@ -20,7 +20,7 @@ class _AddCase extends State<AddCase> {
                   style: TextStyle(
                       color: Colors.black87
                   ) ),
-            backgroundColor: Colors.pinkAccent,
+            backgroundColor: Colors.blue,
 
           )
 

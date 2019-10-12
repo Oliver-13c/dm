@@ -20,7 +20,7 @@ class _AddPerson extends State<AddPerson> {
             style: TextStyle(
               color: Colors.black87
             )  ),
-                backgroundColor: Colors.pinkAccent,
+                backgroundColor: Colors.blue,
           ),
               body: AddPersonForm(),
 

@@ -185,9 +185,9 @@ class _AddPersonFormState extends State<AddPersonForm> {
                       },
                       onChanged: (date) {
                         print("Selected: ${date.month}");
-                        _BirtDateDay = date.year;
+                        _BirtDateDay = date.day ;
                         _BirtDateMonth = date.month;
-                        _BirtDateYear = date.year;
+                        _BirtDateYear = date.year ;
                       },
                     ),
 
@@ -382,6 +382,8 @@ class _AddPersonFormState extends State<AddPersonForm> {
                         .setData({
                           'Name': _FirstName.text,
                           'Phone': _Phone.text,
+                          'StreetNumber': _StreetNumber.text,
+                          'StreetName': _Street.text,
                           'LastName': _Lastname.text,
                           'SecondLastName': _SecondLastName.text,
                           'Colonia': _Colonia.text,
@@ -389,10 +391,10 @@ class _AddPersonFormState extends State<AddPersonForm> {
                           'Estado': _Estado.text,
                           "Reason": _currentItemSelected,
                           "Date": DateTime.now(),
-                          "BirtDateDay": _BirtDateDay,
-                          "BirtDateMonth": _BirtDateMonth,
-                          "BirtDateYear": _BirtDateYear,
-                          'Gender': _currentItemSelectedGender,
+                          "BirtDateDay": _BirtDateDay.toString(),
+                          "BirtDateMonth": _BirtDateMonth.toString(),
+                          "BirtDateYear": _BirtDateYear.toString(),
+                          'Gender': _currentItemSelectedGender.toString(),
                           'Id': _Id,
 
                         });

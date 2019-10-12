@@ -2,7 +2,10 @@ import 'package:dm/Add_Case.dart';
 import 'package:dm/Add_Person.dart';
 import 'package:dm/ListPeaple.dart';
 import 'package:flutter/material.dart';
+import 'Login/EmailSingInForm.dart';
+import 'Login/Email_Singin_page.dart';
 import 'Login/Login_page.dart';
+import 'PeopleDatails.dart';
 import 'different_fab_in_tabbar_task-6.dart';
 
 
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DM',
+      title: 'DIF',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
@@ -34,6 +37,9 @@ class MyApp extends StatelessWidget {
         '/AddPerson': (BuildContext context) => AddPerson(),
         '/AddCase': (BuildContext context) =>  AddCase(),
         '/Details': (BuildContext context) => PepleDetails(),
+        '/EmailSingInPage': (BuildContext context) => EmailSingInPage(),
+
+
       }
     );
   }

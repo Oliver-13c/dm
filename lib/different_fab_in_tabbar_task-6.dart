@@ -56,7 +56,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
             Text("DM"),
           ],
         ),
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.blue,
         bottom: TabBar(
           controller: _tabController,
           tabs: <Widget>[
@@ -65,7 +65,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
 
             ),
             Tab(
-              text: "Seguimiento",
+              text: "Estadistica",
             ),
           ],
         ),

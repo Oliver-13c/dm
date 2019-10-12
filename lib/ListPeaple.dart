@@ -3,18 +3,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:async';
 
+import 'PeopleDatails.dart';
 
 class ListDisplay extends StatefulWidget {
-  final List<DocumentSnapshot> documents;
-   final Map<String, dynamic> profile;
 
-
-   ListDisplay({Key key, this.documents, this.profile,})
-      :
-
-
-      super(key: key);
 
 
 
@@ -24,35 +18,66 @@ class ListDisplay extends StatefulWidget {
 
 class _ListDisplayState extends State<ListDisplay> {
 
-
+  StreamSubscription<QuerySnapshot>subscription;
+  List<DocumentSnapshot>snapshot;
+  CollectionReference collectionReference=Firestore.instance.collection('Visitantes');
+  var Lengt=1;
 
   void initState(){
+
+    subscription=collectionReference.snapshots().listen((datasnapshot){
+      setState(() {
+
+        snapshot=datasnapshot.documents;
+        Lengt = snapshot.length ;
+
+      });
+    });
+
     super.initState();
 
   }
+
+  passData(DocumentSnapshot snap){
+    Navigator.of(context).push(new MaterialPageRoute(
+        builder: (context)=> PepleDetails(snapshot: snap,)));
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+
+
         _List()
 
+
+
+
       ],
+
+
+
+
     );
   }
-  Widget _item(IconData icon, String nombre ){
+
+
+  Widget _item(IconData icon, String Name, String LastName, String Reason, SecondLastName, index ){
 
     return ListTile(
       leading: Icon(icon, color: Colors.blueAccent, ),
      onTap: (){
-       Navigator.of(context).pushNamed('/Details');
+        passData(snapshot[index]);
+       //Navigator.of(context).pushNamed('/Details');
      },
-      title: Text(nombre,
+      title: Text("$Name $LastName $SecondLastName",
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15.0,
         ),),
-      subtitle: Text('Razon de vista: Asistencia social'),
+      subtitle: Text('Razon de vista:  $Reason'),
     );
   }
 
@@ -63,10 +88,23 @@ class _ListDisplayState extends State<ListDisplay> {
 //    print(widget.documents);
     return Expanded(
       child: ListView.separated(
-        itemCount:  5,
-        itemBuilder: (BuildContext context, int index) =>
-            _item(FontAwesomeIcons.idCard, "Oliver Perez Gutierrez"),
+        itemCount: Lengt,
+        itemBuilder: (BuildContext context, index) {
+          if (snapshot[index].data.isNotEmpty ){
 
+            return _item(FontAwesomeIcons.idCard,  (snapshot[index].data["Name"]),
+                (snapshot[index].data["LastName"]), (snapshot[index].data["Reason"]),
+                (snapshot[index].data["SecondLastName"]), index );
+
+          }
+
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+
+
+        },
+ 
         separatorBuilder: (BuildContext context, int index){
           return Container(
             color: Colors.blueAccent.withOpacity(0.15),
@@ -80,83 +118,6 @@ class _ListDisplayState extends State<ListDisplay> {
       ),
     );
 
-  }
-}
-
-class PepleDetails extends StatefulWidget {
-  @override
-  _PepleDetailsState createState() => _PepleDetailsState();
-}
-
-class _PepleDetailsState extends State<PepleDetails> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row (
-          children: <Widget>[
-            Icon(Icons.spa),
-            SizedBox(width: 8.0),
-            Text("Detalles"),
-
-
-          ],
-        ),
-          backgroundColor: Colors.pinkAccent,
-
-      ),
-      body:
-
-        ListView(
-
-
-          children: <Widget>[
-          ListTile(
-            leading:  Icon(Icons.perm_identity, color: Colors.blueAccent,),
-            title: Text('Nombre: Oliver Perez Gutierrez'),
-
-          ),
-
-
-          ListTile(
-              leading:  Icon(Icons.calendar_today, color: Colors.blueAccent,),
-              title: Text('Fecha de Nacimiento: 26/10/1994 '),
-
-          ),
-            ListTile(
-              leading:  Icon(Icons.person, color: Colors.blueAccent,),
-              title: Text('Genero: Masculino'),
-
-            ),
-
-          ListTile(
-              leading:  Icon(Icons.contact_phone, color: Colors.blueAccent,),
-              title: Text('Telefono: 8110787253 '),
-
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Direccion', ),
-            ),
-            ListTile(
-              leading:  Icon(Icons.map, color: Colors.blueAccent,),
-              title: Text('Calle: Tecnologico Numero: 139 Colonia: '
-                  'Los Pilares                Municipio: Salinas Victoria   '
-                  '                    Estado: Nuevo Leon'),
-
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Comentarios"),
-            )
-
-
-
-
-          ],
-      ),
-
-      );
   }
 }
 
