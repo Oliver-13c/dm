@@ -26,7 +26,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
   final _Municipio = TextEditingController();
   final _Estado = TextEditingController();
   final _BirthDate = TextEditingController();
-  var  _currentItemSelected = 'Razón de su visita';
+   var  _currentItemSelected = 'Razón de su visita';
   var R1 = 'Apoyo personas discapacitadas';
   var R2 = 'Apoyo tercera endad';
   var R3 = 'Asesoria Legal';
@@ -236,6 +236,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
                   controller: _StreetNumber,
 
 
+
                 ),
 
                 TextFormField(
@@ -333,13 +334,20 @@ class _AddPersonFormState extends State<AddPersonForm> {
                         ),
                         DropdownMenuItem<String> (
                           value: R8,
+
                           child: Text (
                             R8,
                           ),
                         ),
                         ],
                         onChanged: (value ) {
+
+
                             _currentItemSelected = value;
+
+
+
+
 
                   setState(() {
                   });
@@ -395,7 +403,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
                           "BirtDateMonth": _BirtDateMonth.toString(),
                           "BirtDateYear": _BirtDateYear.toString(),
                           'Gender': _currentItemSelectedGender.toString(),
-                          'Id': _Id,
+                           'Id': _Id,
 
                         });
 

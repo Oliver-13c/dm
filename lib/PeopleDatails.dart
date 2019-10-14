@@ -88,20 +88,33 @@ class _PepleDetailsState extends State<PepleDetails> {
                 '                    Estado: ' + widget.snapshot.data['Estado'] +' '),
 
           ),
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text("Seguimiento"),
-          )
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur vitae consectetur sunt culpa deleniti necessitatibus commodi dignissimos, illum assumenda dolorum eligendi repellendus. Nulla fuga, ipsam similique repudiandae quod sit nam. "),
+          ),
 
 
 
 
         ],
+
+
+
       ),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
         child: Icon(Icons.comment),
       ),
+
+
+
 
     );
   }
