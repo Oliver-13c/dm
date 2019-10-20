@@ -17,6 +17,15 @@ class ListDisplay extends StatefulWidget {
 }
 
 class _ListDisplayState extends State<ListDisplay> {
+  var R1 = 'Apoyo personas discapacitadas';
+  var R2 = 'Apoyo tercera endad';
+  var R3 = 'Asesoria Legal';
+  var R4 = 'Asistencia Social';
+  var R5 = 'Despensas';
+  var R6 = 'Terapia psicológica';
+  var R7 = 'Violencia Familiar';
+  var R8 = 'Otro';
+  var _currentItemSelected = 'Filtrar';
 
   StreamSubscription<QuerySnapshot>subscription;
   List<DocumentSnapshot>snapshot;
@@ -41,25 +50,103 @@ class _ListDisplayState extends State<ListDisplay> {
 
   passData(DocumentSnapshot snap){
     Navigator.of(context).push(new MaterialPageRoute(
-        builder: (context)=> PepleDetails(snapshot: snap,)));
+        builder: (context)=> PepleDetails(snapshot: snap,
+        )));
   }
 
 
   @override
   Widget build(BuildContext context) {
+
+    while(snapshot.length < 0){
+      return Center(
+            child: CircularProgressIndicator(),
+          );
+    }
     return Column(
       children: <Widget>[
+         DropdownButton<String>(
+          items: [
+          DropdownMenuItem<String>(
+           value: R1,
+            child: Text (R1,
+          ),
+          ),
+          DropdownMenuItem<String> (
+            value: R2,
+            child: Text (
+          R2,
+          ),
+          ),
+
+          DropdownMenuItem<String> (
+            value: R3,
+              child: Text (R3,
+          ),
+          ),
+          DropdownMenuItem<String> (
+            value: R4,
+            child: Text (
+            R4,
+          ),
+          ),
+
+          DropdownMenuItem<String> (
+            value: R5,
+              child: Text (
+          R5,
+          ),
+          ),
+          DropdownMenuItem<String> (
+            value: R6,
+              child: Text (
+          R6,
+          ),
+          ),
+
+          DropdownMenuItem<String> (
+            value: R7,
+              child: Text (
+          R7,
+          ),
+          ),
+          DropdownMenuItem<String> (
+            value: R8,
+
+            child: Text (
+          R8,
+          ),
+          ),
+          ],//DropdownButton
+          onChanged: (value) {
 
 
-        _List(),
+            _currentItemSelected = value;
 
 
+            setState(() {
+            });
 
 
-      ],
+                  print("value: $value");
+//                            Firestore.instance
+//                                .collection('Visitantes')
+//                                .where('Estado', isEqualTo: 'NL')
+//                                .snapshots()
+//                                .listen((data) =>
+//                                data.documents.forEach((doc) => print(doc.data)));
+//                            print('hola');
 
-
-
+          },
+          hint: Text (
+            _currentItemSelected,
+            style: TextStyle (
+              color: Colors.black87,
+            ),
+          ),
+        ),
+          _List(),
+                  ],
 
     );
   }
@@ -70,8 +157,6 @@ class _ListDisplayState extends State<ListDisplay> {
     switch(Reason){
       case 'Apoyo personas discapacitadas':{
         ColotCH = 0xFF43A047
-
-
         ;
       }
       break;

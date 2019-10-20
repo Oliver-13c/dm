@@ -26,6 +26,46 @@ class _PepleDetailsState extends State<PepleDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var ColotCH;
+
+
+
+    switch(widget.snapshot.data['Reason']){
+      case 'Apoyo personas discapacitadas':{
+        ColotCH = 0xFF43A047
+        ;
+      }
+      break;
+      case 'Apoyo tercera endad':{
+        ColotCH = 0xFF6D4C41;
+      }
+      break;
+      case 'Otro':{
+        ColotCH = 0xFF1976D2;
+      }
+      break;
+      case  'Asesoria Legal':{
+        ColotCH = 0x8A000000;
+      }
+      break;
+      case  'Asistencia Social':{
+        ColotCH = 0xFFFFEA00;
+      }
+      break;
+      case  'Despensas':{
+        ColotCH = 0xFF5E35B1;
+      }
+      break;
+      case  'Terapia psicológica':{
+        ColotCH = 0xFFFF8A80;
+      }
+      break;
+      case  'Violencia Familiar':{
+        ColotCH = 0xFFFFD180;
+      }
+      break;
+
+    }
     return Scaffold(
       appBar: AppBar(
 
@@ -46,7 +86,7 @@ class _PepleDetailsState extends State<PepleDetails> {
 
         children: <Widget>[
           ListTile(
-            leading:  Icon(Icons.perm_identity, color: Colors.blueAccent,),
+            leading:  Icon(Icons.perm_identity, color: Color(ColotCH),),
             title: Text('Nombre: '+ widget.snapshot.data['Name'] + " " +
                 widget.snapshot.data['LastName'] +" " + widget.snapshot.data['SecondLastName']
             ),
@@ -56,7 +96,7 @@ class _PepleDetailsState extends State<PepleDetails> {
 
           ListTile(
 
-            leading:  Icon(Icons.calendar_today, color: Colors.blueAccent,),
+            leading:  Icon(Icons.calendar_today, color: Color(ColotCH),),
             title: Text('Fecha de Nacimiento: '  +
             widget.snapshot.data['BirtDateDay'] +"/"+
                 widget.snapshot.data['BirtDateMonth'] +"/"+
@@ -65,13 +105,13 @@ class _PepleDetailsState extends State<PepleDetails> {
 
           ),
           ListTile(
-            leading:  Icon(Icons.person, color: Colors.blueAccent,),
+            leading:  Icon(Icons.person, color: Color(ColotCH),),
             title: Text('Genero: '+ widget.snapshot.data['Gender']),
 
           ),
 
           ListTile(
-            leading:  Icon(Icons.contact_phone, color: Colors.blueAccent,),
+            leading:  Icon(Icons.contact_phone, color: Color(ColotCH),),
             title: Text('Telefono:  ' + widget.snapshot.data['Phone'] ),
 
           ),
@@ -80,7 +120,7 @@ class _PepleDetailsState extends State<PepleDetails> {
             child: Text('Direccion', ),
           ),
           ListTile(
-            leading:  Icon(Icons.map, color: Colors.blueAccent,),
+            leading:  Icon(Icons.map, color: Color(ColotCH),),
             title: Text('Calle: '+ widget.snapshot.data['StreetName'] +' Numero: '
                 + widget.snapshot.data['StreetNumber'] +' Colonia: '
                 + widget.snapshot.data['Colonia'] +
