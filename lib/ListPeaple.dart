@@ -25,6 +25,7 @@ class _ListDisplayState extends State<ListDisplay> {
   var R6 = 'Terapia psicológica';
   var R7 = 'Violencia Familiar';
   var R8 = 'Otro';
+  var R9 ="Todos";
   var _currentItemSelected = 'Filtrar';
 
   StreamSubscription<QuerySnapshot>subscription;
@@ -117,6 +118,13 @@ class _ListDisplayState extends State<ListDisplay> {
           R8,
           ),
           ),
+            DropdownMenuItem<String> (
+              value: R9,
+
+              child: Text (
+                R9,
+              ),
+            ),
           ],//DropdownButton
           onChanged: (value) {
 
@@ -196,7 +204,6 @@ class _ListDisplayState extends State<ListDisplay> {
       leading: Icon(icon, color: Color(ColotCH), ),
      onTap: (){
         passData(snapshot[index]);
-       //Navigator.of(context).pushNamed('/Details');
      },
       title: Text("$Name $LastName $SecondLastName",
         style: TextStyle(

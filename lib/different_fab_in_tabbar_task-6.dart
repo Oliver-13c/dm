@@ -53,7 +53,7 @@ class _DiffFABinTabbarState extends State<DiffFABinTabbar>
           children: <Widget>[
             Icon(Icons.spa),
             SizedBox(width: 8.0),
-            Text("DM"),
+            Text("DIF"),
           ],
         ),
         backgroundColor: Colors.blue,

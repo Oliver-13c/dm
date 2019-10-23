@@ -405,7 +405,9 @@ class _AddPersonFormState extends State<AddPersonForm> {
                           'Gender': _currentItemSelectedGender.toString(),
                            'Id': _Id,
 
-                        });
+                        }
+
+                        );
 
 
                         Scaffold.of(context)

@@ -1,5 +1,6 @@
 import 'package:dm/Add_Case.dart';
 import 'package:dm/Add_Person.dart';
+import 'package:dm/Comments.dart';
 import 'package:dm/ListPeaple.dart';
 import 'package:flutter/material.dart';
 import 'Login/EmailSingInForm.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/AddCase': (BuildContext context) =>  AddCase(),
         '/Details': (BuildContext context) => PepleDetails(),
         '/EmailSingInPage': (BuildContext context) => EmailSingInPage(),
+
 
 
       }
