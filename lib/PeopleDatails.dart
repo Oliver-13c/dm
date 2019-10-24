@@ -27,7 +27,7 @@ class PepleDetails extends StatefulWidget {
 
 
 class _PepleDetailsState extends State<PepleDetails> {
-  @override
+
 
 
   @override
@@ -36,12 +36,13 @@ class _PepleDetailsState extends State<PepleDetails> {
     var ColotCH;
     var SnapId = widget.snapshot.documentID;
 
+    @override
     void initState() {
-      // TODO: implement initState
+
+      super.initState();
       StreamSubscription<QuerySnapshot>subscription2;
       List<DocumentSnapshot>snapshot2;
       CollectionReference collectionReference2=Firestore.instance.collection('Visitantes/$SnapId');
-      super.initState();
     }
 
 

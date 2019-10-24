@@ -70,52 +70,70 @@ class _ListDisplayState extends State<ListDisplay> {
           items: [
           DropdownMenuItem<String>(
            value: R1,
-            child: Text (R1,
+            child: Text (R1, style: TextStyle(
+              color: Color(0xFF43A047)
+            ),
           ),
+
+
           ),
           DropdownMenuItem<String> (
             value: R2,
             child: Text (
-          R2,
+          R2,style: TextStyle(
+                color: Color(0xFF6D4C41)
+            ),
           ),
           ),
 
           DropdownMenuItem<String> (
             value: R3,
-              child: Text (R3,
+              child: Text (R3,style: TextStyle(
+                  color: Color(0x8A000000)
+              ),
           ),
           ),
           DropdownMenuItem<String> (
             value: R4,
             child: Text (
-            R4,
+            R4,style: TextStyle(
+                color: Color(0xFFFFEA00)
+            ),
           ),
           ),
 
           DropdownMenuItem<String> (
             value: R5,
               child: Text (
-          R5,
+          R5,style: TextStyle(
+                  color: Color(0xFF5E35B1)
+              ),
           ),
           ),
           DropdownMenuItem<String> (
             value: R6,
               child: Text (
-          R6,
+          R6, style: TextStyle(
+                  color: Color(0xFFFF8A80)
+              ),
           ),
           ),
 
           DropdownMenuItem<String> (
             value: R7,
               child: Text (
-          R7,
+          R7, style: TextStyle(
+                  color: Color(0xFFFFD180)
+              ),
           ),
           ),
           DropdownMenuItem<String> (
             value: R8,
 
             child: Text (
-          R8,
+          R8, style: TextStyle(
+                color: Color(0xFF1976D2)
+            ),
           ),
           ),
             DropdownMenuItem<String> (
