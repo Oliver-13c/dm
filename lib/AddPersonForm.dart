@@ -398,7 +398,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
                           'Municipio': _Municipio.text,
                           'Estado': _Estado.text,
                           "Reason": _currentItemSelected,
-                          "Date": DateTime.now(),
+                          "Date": DateTime.now().toIso8601String(),
                           "BirtDateDay": _BirtDateDay.toString(),
                           "BirtDateMonth": _BirtDateMonth.toString(),
                           "BirtDateYear": _BirtDateYear.toString(),
