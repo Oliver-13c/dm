@@ -13,6 +13,8 @@ class Comments extends StatefulWidget {
 }
 
 class _CommentsState extends State<Comments> {
+
+
   @override
   Widget build(BuildContext context) {
     var Id = widget.SnapId;
@@ -32,7 +34,7 @@ class _CommentsState extends State<Comments> {
                   .collection('Visitantes/$Id/Comentarios')
                   .document()
                   .setData({
-                "Date": DateTime.now(),
+                "Date": DateTime.now().toIso8601String(),
                 "Seguimineto": Coment.text,
 
               }

@@ -13,20 +13,29 @@ class PepleDetails extends StatefulWidget {
   PepleDetails({this.snapshot,
   }
 
-
   );
-
-
 
   @override
   _PepleDetailsState createState() => _PepleDetailsState();
 }
 
-
-
-
-
 class _PepleDetailsState extends State<PepleDetails> {
+
+
+  Stream<QuerySnapshot> _query;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    var Id = widget.snapshot.documentID;
+//    print('instate'+widget.CurrentReason);
+    _query = Firestore.instance
+        .collection('Visitantes/$Id/Comentarios')
+        .where("Reason",)
+        .snapshots();
+  }
 
 
 
@@ -35,15 +44,6 @@ class _PepleDetailsState extends State<PepleDetails> {
 
     var ColotCH;
     var SnapId = widget.snapshot.documentID;
-
-    @override
-    void initState() {
-
-      super.initState();
-      StreamSubscription<QuerySnapshot>subscription2;
-      List<DocumentSnapshot>snapshot2;
-      CollectionReference collectionReference2=Firestore.instance.collection('Visitantes/$SnapId');
-    }
 
 
 
@@ -166,7 +166,38 @@ class _PepleDetailsState extends State<PepleDetails> {
 
 
           ),
-          _listComment(),
+//          _listComment(),
+          StreamBuilder<QuerySnapshot>(
+            stream: _query,
+            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> data) {
+              if (data.hasData) {
+                return ListWidget(
+                    documents: data.data.documents
+                );
+              }
+
+              return Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 200.0,
+                    child: Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            child: new CircularProgressIndicator(
+
+                            ),
+
+                          ),
+                        ),
+                        Center(child: Text("Se estan cargando los datos")),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
 
         ],
 
@@ -194,10 +225,33 @@ class _PepleDetailsState extends State<PepleDetails> {
 
   }
 
+
+
+}
+
+
+class ListWidget extends StatefulWidget {
+  final List<DocumentSnapshot> documents;
+  ListWidget({Key key, this.documents}):super(key: key);
+
+  @override
+  _ListWidgetState createState() => _ListWidgetState();
+}
+
+class _ListWidgetState extends State<ListWidget> {
+  @override
+  Widget build(BuildContext context) {
+    print(widget.documents[0].data['Date']);
+    return Container(
+      child: _listComment(),
+
+    );
+  }
+
   Widget _itemComment(IconData icon, String FirstComment, DateComment){
     return ListTile(
       leading: Icon(icon, ),
-      title: Text('Primer comentario  $FirstComment'),
+      title: Text(' $FirstComment'),
       subtitle: Text('fecha en la se publico $DateComment',
         style: TextStyle(
           fontWeight: FontWeight.bold,
@@ -215,25 +269,26 @@ class _PepleDetailsState extends State<PepleDetails> {
 
     return Expanded(
       child: ListView.separated(
-        itemCount: 4,
+          itemCount: widget.documents.length,
 
-        itemBuilder: (BuildContext context, index){
-          return _itemComment(
-            Icons.note, 'Comentario', ' fecha en los comentarios'
-          );
+          itemBuilder: (BuildContext context, index){
+//            widget.documents[index].data['Date']
+            return _itemComment(
 
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return Container (
-            //color: Colors.blueAccent.withOpacity(0.15),
-            height: 8.0,
+                Icons.note, widget.documents[index].data['Seguimineto'],
+                widget.documents[index].data['Date']);
+
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return Container (
+              //color: Colors.blueAccent.withOpacity(0.15),
+              height: 8.0,
 
 
-          );
-        }
+            );
+          }
 
       ),
     );
   }
-
 }
