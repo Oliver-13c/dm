@@ -18,6 +18,20 @@ class ListDisplay extends StatefulWidget {
 }
 
 class _ListDisplayState extends State<ListDisplay> {
+  Stream<QuerySnapshot> _query;
+
+
+
+  @override
+  void initState(){
+    super.initState();
+    _query  = Firestore.instance
+        .collection('Visitantes')
+        .snapshots();
+    print(_query);
+
+  }
+
   var R1 = 'Apoyo personas discapacitadas';
   var R2 = 'Apoyo tercera endad';
   var R3 = 'Asesoria Legal';
@@ -35,28 +49,24 @@ class _ListDisplayState extends State<ListDisplay> {
   var Lengt=1;
   var ColotCH;
 
-  void initState(){
+//  void initState(){
+//
+//    subscription=collectionReference.snapshots().listen((datasnapshot){
+//      setState(() {
+//
+//        snapshot= datasnapshot.documents;
+//        Lengt = snapshot.length ;
+//        print(snapshot);
+//        snapshot.where((doc) =>doc['Reason']==CurrentItemSelected);
+//
+//      });
+//    });
+//
+//    super.initState();
+//
+//  }
 
-    subscription=collectionReference.snapshots().listen((datasnapshot){
-      setState(() {
 
-        snapshot= datasnapshot.documents;
-        Lengt = snapshot.length ;
-        print(snapshot);
-        snapshot.where((doc) =>doc['Reason']==CurrentItemSelected);
-
-      });
-    });
-
-    super.initState();
-
-  }
-
-  passData(DocumentSnapshot snap) async {
-    Navigator.of(context).push(new MaterialPageRoute(
-        builder: (context)=> PepleDetails(snapshot: snap,
-        )));
-  }
   
   PassFilter(String CurrentItemSelected){
     Navigator.of(context).push(new MaterialPageRoute
@@ -69,11 +79,6 @@ class _ListDisplayState extends State<ListDisplay> {
   @override
   Widget build(BuildContext context) {
 
-    while(snapshot.length < 0){
-      return Center(
-            child: CircularProgressIndicator(),
-          );
-    }
     return Column(
       children: <Widget>[
          DropdownButton<String>(
@@ -183,13 +188,69 @@ class _ListDisplayState extends State<ListDisplay> {
             ),
           ),
         ),
-          _List(),
-                  ],
+//          _List(),
+        StreamBuilder<QuerySnapshot>(
+          stream: _query,
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> data) {
+            if (data.hasData) {
+              return ListAll(
+                  documents: data.data.documents
+              );
+            }
+
+            return Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 200.0,
+                  child: Stack(
+                    children: <Widget>[
+                      Center(
+                        child: Container(
+                          child: new CircularProgressIndicator(
+
+                          ),
+                        ),
+                      ),
+                      Center(child: Text("Se estan cargando los datos")),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+
+      ],
 
     );
   }
 
 
+
+}
+
+
+class ListAll extends StatefulWidget {
+  final List<DocumentSnapshot> documents;
+  ListAll({Key key, this.documents}):super(key: key);
+  @override
+  _ListAllState createState() => _ListAllState();
+}
+
+class _ListAllState extends State<ListAll> {
+  var ColotCH;
+  passData(DocumentSnapshot snap) async {
+    Navigator.of(context).push(new MaterialPageRoute(
+        builder: (context)=> PepleDetails(snapshot: snap,
+        )));
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: _List(),
+
+    );
+  }
   Widget _item(IconData icon, String Name, String LastName, String Reason, SecondLastName, index, ColorOption ) {
 
     switch(Reason){
@@ -231,9 +292,9 @@ class _ListDisplayState extends State<ListDisplay> {
 
     return ListTile(
       leading: Icon(icon, color: Color(ColotCH), ),
-     onTap: (){
-        passData(snapshot[index]);
-     },
+      onTap: (){
+        passData(widget.documents[index]);
+      },
       title: Text("$Name $LastName $SecondLastName",
         style: TextStyle(
           fontWeight: FontWeight.bold,
@@ -246,18 +307,18 @@ class _ListDisplayState extends State<ListDisplay> {
 //    print(widget.documents);
     return Expanded(
       child: ListView.separated(
-        itemCount: Lengt,
+        itemCount: widget.documents.length,
         itemBuilder: (BuildContext context, index) {
 //          return Center(
 //            child: CircularProgressIndicator(),
 //
-        return _item(FontAwesomeIcons.idCard,  (snapshot[index].data["Name"]),
-            (snapshot[index].data["LastName"]), (snapshot[index].data["Reason"]),
-            (snapshot[index].data["SecondLastName"]), index,
-            (snapshot[index].data["ColorOption"])
-        );
+          return _item(FontAwesomeIcons.idCard,  (widget.documents[index].data["Name"]),
+              (widget.documents[index].data["LastName"]), (widget.documents[index].data["Reason"]),
+              (widget.documents[index].data["SecondLastName"]), index,
+              (widget.documents[index].data["ColorOption"])
+          );
         },
- 
+
         separatorBuilder: (BuildContext context, int index){
           return Container(
             //color: Colors.blueAccent.withOpacity(0.15),
@@ -270,5 +331,3 @@ class _ListDisplayState extends State<ListDisplay> {
 
   }
 }
-
-

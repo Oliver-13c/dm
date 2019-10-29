@@ -56,7 +56,7 @@ class _PeopleFilterState extends State<PeopleFilter> {
           StreamBuilder<QuerySnapshot>(
             stream: _query,
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> data) {
-              if (data.hasError) {
+              if (data.hasData) {
                 return FilterWidget(
                     documents: data.data.documents
                 );
@@ -108,8 +108,8 @@ class _FilterWidgetState extends State<FilterWidget> {
   }
   @override
   Widget build(BuildContext context) {
-    print('antes del widget.documents');
-    print(widget.documents[0].data['Name']);
+//    print('antes del widget.documents');
+//    print(widget.documents[0].data['Name']);
 
 
     return Container(
