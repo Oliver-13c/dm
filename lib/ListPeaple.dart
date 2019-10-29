@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:async';
 
 import 'PeopleDatails.dart';
+import 'Services/PeopleFilter.dart';
 
 class ListDisplay extends StatefulWidget {
 
@@ -26,7 +27,7 @@ class _ListDisplayState extends State<ListDisplay> {
   var R7 = 'Violencia Familiar';
   var R8 = 'Otro';
   var R9 ="Todos";
-  var _currentItemSelected = 'Apoyo personas discapacitadas';
+  var CurrentItemSelected = 'Apoyo personas discapacitadas';
 
   StreamSubscription<QuerySnapshot>subscription;
   List<DocumentSnapshot>snapshot;
@@ -42,7 +43,7 @@ class _ListDisplayState extends State<ListDisplay> {
         snapshot= datasnapshot.documents;
         Lengt = snapshot.length ;
         print(snapshot);
-        snapshot.where((doc) =>doc['Reason']==_currentItemSelected);
+        snapshot.where((doc) =>doc['Reason']==CurrentItemSelected);
 
       });
     });
@@ -51,10 +52,17 @@ class _ListDisplayState extends State<ListDisplay> {
 
   }
 
-  passData(DocumentSnapshot snap){
+  passData(DocumentSnapshot snap) async {
     Navigator.of(context).push(new MaterialPageRoute(
         builder: (context)=> PepleDetails(snapshot: snap,
         )));
+  }
+  
+  PassFilter(String CurrentItemSelected){
+    Navigator.of(context).push(new MaterialPageRoute
+      (
+        builder: (context)=> PeopleFilter( CurrentItemSelected)
+    ));
   }
 
 
@@ -149,7 +157,9 @@ class _ListDisplayState extends State<ListDisplay> {
           onChanged: (value) {
 
 
-            _currentItemSelected = value;
+            CurrentItemSelected = value;
+            PassFilter(value);
+            
 
 
             setState(() {
@@ -167,7 +177,7 @@ class _ListDisplayState extends State<ListDisplay> {
 
           },
           hint: Text (
-            _currentItemSelected,
+            CurrentItemSelected,
             style: TextStyle (
               color: Colors.black87,
             ),
@@ -180,7 +190,7 @@ class _ListDisplayState extends State<ListDisplay> {
   }
 
 
-  Widget _item(IconData icon, String Name, String LastName, String Reason, SecondLastName, index, ColorOption ){
+  Widget _item(IconData icon, String Name, String LastName, String Reason, SecondLastName, index, ColorOption ) {
 
     switch(Reason){
       case 'Apoyo personas discapacitadas':{
