@@ -241,7 +241,7 @@ class ListWidget extends StatefulWidget {
 class _ListWidgetState extends State<ListWidget> {
   @override
   Widget build(BuildContext context) {
-    print(widget.documents[0].data['Date']);
+//    print(widget.documents[0].data['Date']);
     return Container(
       child: _listComment(),
 

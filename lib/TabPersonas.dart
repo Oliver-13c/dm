@@ -11,19 +11,19 @@ class TabPeople extends StatefulWidget {
 }
 
 class _TabPeopleState extends State<TabPeople> {
-//  Stream<QuerySnapshot> _query;
-//
-//
-//
-//  @override
-//  void initState(){
-//    super.initState();
-//    _query  = Firestore.instance
-//        .collection('Visitantes')
-//        .snapshots();
-//    print(_query);
-//
-//  }
+  Stream<QuerySnapshot> _query;
+
+
+
+  @override
+  void initState(){
+    super.initState();
+    _query  = Firestore.instance
+        .collection('Visitantes')
+        .snapshots();
+    print(_query);
+
+  }
 
   @override
   Widget build(BuildContext context) {
