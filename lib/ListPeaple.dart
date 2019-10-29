@@ -26,7 +26,7 @@ class _ListDisplayState extends State<ListDisplay> {
   var R6 = 'Terapia psicológica';
   var R7 = 'Violencia Familiar';
   var R8 = 'Otro';
-  var R9 ="Todos";
+//  var R9 ="Todos";
   var CurrentItemSelected = 'Apoyo personas discapacitadas';
 
   StreamSubscription<QuerySnapshot>subscription;
@@ -146,13 +146,13 @@ class _ListDisplayState extends State<ListDisplay> {
             ),
           ),
           ),
-            DropdownMenuItem<String> (
-              value: R9,
-
-              child: Text (
-                R9,
-              ),
-            ),
+//            DropdownMenuItem<String> (
+//              value: R9,
+//
+//              child: Text (
+//                R9,
+//              ),
+//            ),
           ],//DropdownButton
           onChanged: (value) {
 

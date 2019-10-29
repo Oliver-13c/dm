@@ -56,14 +56,30 @@ class _PeopleFilterState extends State<PeopleFilter> {
           StreamBuilder<QuerySnapshot>(
             stream: _query,
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> data) {
-              if (data.hasData) {
+              if (data.hasError) {
                 return FilterWidget(
                     documents: data.data.documents
                 );
               }
 
-              return Center(
-                child: CircularProgressIndicator(),
+              return Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 200.0,
+                    child: Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            child: new CircularProgressIndicator(
+
+                            ),
+                          ),
+                        ),
+                        Center(child: Text("Se estan cargando los datos")),
+                      ],
+                    ),
+                  ),
+                ],
               );
             },
           ),
