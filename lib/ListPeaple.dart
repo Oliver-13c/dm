@@ -26,7 +26,7 @@ class _ListDisplayState extends State<ListDisplay> {
   var R7 = 'Violencia Familiar';
   var R8 = 'Otro';
   var R9 ="Todos";
-  var _currentItemSelected = 'Filtrar';
+  var _currentItemSelected = 'Apoyo personas discapacitadas';
 
   StreamSubscription<QuerySnapshot>subscription;
   List<DocumentSnapshot>snapshot;
@@ -41,6 +41,8 @@ class _ListDisplayState extends State<ListDisplay> {
 
         snapshot= datasnapshot.documents;
         Lengt = snapshot.length ;
+        print(snapshot);
+        snapshot.where((doc) =>doc['Reason']==_currentItemSelected);
 
       });
     });
@@ -218,7 +220,6 @@ class _ListDisplayState extends State<ListDisplay> {
     }
 
     return ListTile(
-
       leading: Icon(icon, color: Color(ColotCH), ),
      onTap: (){
         passData(snapshot[index]);
@@ -231,36 +232,27 @@ class _ListDisplayState extends State<ListDisplay> {
       subtitle: Text('Razon de vista:  $Reason'),
     );
   }
-
-
-
-
   Widget _List(){
 //    print(widget.documents);
     return Expanded(
       child: ListView.separated(
         itemCount: Lengt,
         itemBuilder: (BuildContext context, index) {
-
 //          return Center(
 //            child: CircularProgressIndicator(),
-//          );
-          return _item(FontAwesomeIcons.idCard,  (snapshot[index].data["Name"]),
-              (snapshot[index].data["LastName"]), (snapshot[index].data["Reason"]),
-              (snapshot[index].data["SecondLastName"]), index,
-              (snapshot[index].data["ColorOption"])
-          );
-
+//
+        return _item(FontAwesomeIcons.idCard,  (snapshot[index].data["Name"]),
+            (snapshot[index].data["LastName"]), (snapshot[index].data["Reason"]),
+            (snapshot[index].data["SecondLastName"]), index,
+            (snapshot[index].data["ColorOption"])
+        );
         },
  
         separatorBuilder: (BuildContext context, int index){
           return Container(
             //color: Colors.blueAccent.withOpacity(0.15),
             height: 8.0,
-
-
           );
-
         },
 
       ),
