@@ -20,6 +20,43 @@ class PepleDetails extends StatefulWidget {
 }
 
 class _PepleDetailsState extends State<PepleDetails> {
+  TextEditingController _NameFieldController = TextEditingController();
+  TextEditingController _LastNmaeFieldController = TextEditingController();
+//  var Name = widget.snapshot;
+
+  _displayDialog(BuildContext context) async {
+    final Name = widget.snapshot.data['Name'];
+    debugPrint('print'+ Name);
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Corrección de datos'),
+            content: Column(
+              children: <Widget>[
+                TextField(
+                  controller: _NameFieldController,
+                  decoration: InputDecoration(hintText: "TextField in Dialog"),
+                ),
+                TextField(
+                  controller: _NameFieldController,
+
+                  decoration: InputDecoration(hintText: "TextField in Dialog"),
+                ),
+              ],
+            ),
+
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('CANCEL'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
 
 
   Stream<QuerySnapshot> _query;
@@ -91,7 +128,11 @@ class _PepleDetailsState extends State<PepleDetails> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.edit),
-            onPressed: () => debugPrint(SnapId),
+            onPressed: () {
+              debugPrint(SnapId);
+              _displayDialog(context);
+              debugPrint(SnapId);
+            }
           )
         ],
 
@@ -292,3 +333,4 @@ class _ListWidgetState extends State<ListWidget> {
     );
   }
 }
+

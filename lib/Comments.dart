@@ -29,6 +29,7 @@ class _CommentsState extends State<Comments> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
+
               debugPrint( Id );
               Firestore.instance
                   .collection('Visitantes/$Id/Comentarios')
@@ -70,3 +71,5 @@ class _CommentsState extends State<Comments> {
   
 
 }
+
+
