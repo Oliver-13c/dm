@@ -2,11 +2,14 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:async';
-
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'PassFilterDate.dart';
 import 'PeopleDatails.dart';
 import 'Services/PeopleFilter.dart';
+import 'package:intl/intl.dart';
 
 class ListDisplay extends StatefulWidget {
 
@@ -41,6 +44,7 @@ class _ListDisplayState extends State<ListDisplay> {
   var R7 = 'Violencia Familiar';
   var R8 = 'Otro';
 //  var R9 ="Todos";
+  final format = DateFormat("yyyy-MM-dd");
   var CurrentItemSelected = 'Apoyo personas discapacitadas';
 
   StreamSubscription<QuerySnapshot>subscription;
@@ -74,6 +78,13 @@ class _ListDisplayState extends State<ListDisplay> {
         builder: (context)=> PeopleFilter( CurrentItemSelected)
     ));
   }
+  PassFilterDate(String CurrentItemSelected){
+    Navigator.of(context).push(new MaterialPageRoute
+      (
+        builder: (context)=> PeopleFilterDate( CurrentItemSelected)
+    ));
+  }
+
 
 
   @override
@@ -81,6 +92,32 @@ class _ListDisplayState extends State<ListDisplay> {
 
     return Column(
       children: <Widget>[
+//        Text('Filtrar por fecha'),
+
+      FlatButton(onPressed: (){
+
+      DatePicker.showDatePicker(context,
+          showTitleActions: true,
+          minTime: DateTime(1900, 1, 1),
+          maxTime: DateTime(2022, 12, 31),
+          onChanged: (date) {print('change $date');},
+          onConfirm: (date) {
+          String roc = date.toString().substring(0, 10);
+
+            print('confirm $date');
+            print(roc);
+          PassFilterDate(roc);
+
+
+
+          },
+          currentTime: DateTime.now(), locale: LocaleType.en);
+          format: DateFormat("yyyy-MM-dd");
+
+
+       }, child: Text('Filtrar por fecha')),
+
+
          DropdownButton<String>(
           items: [
           DropdownMenuItem<String>(
@@ -227,6 +264,7 @@ class _ListDisplayState extends State<ListDisplay> {
 
 
 
+
 }
 
 
@@ -303,6 +341,7 @@ class _ListAllState extends State<ListAll> {
       subtitle: Text('Razon de vista:  $Reason'),
     );
   }
+
   Widget _List(){
 //    print(widget.documents);
     return Expanded(

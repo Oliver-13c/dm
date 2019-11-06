@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:dm/DropDownButton.dart';
-import 'Add_Person.dart';
 
 
 class AddPersonForm extends StatefulWidget {
@@ -25,7 +22,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
   final _Colonia = TextEditingController();
   final _Municipio = TextEditingController();
   final _Estado = TextEditingController();
-  final _BirthDate = TextEditingController();
+  final DateJustDays = TextEditingController();
    var  _currentItemSelected = 'Razón de su visita';
   var R1 = 'Apoyo personas discapacitadas';
   var R2 = 'Apoyo tercera endad';
@@ -46,6 +43,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
   final G3 ='Otro';
   var _currentItemSelectedGender =  'Genero';
   var _Id=0;
+  String DateF;
 
 
 
@@ -175,24 +173,23 @@ class _AddPersonFormState extends State<AddPersonForm> {
                       format: format,
                       onShowPicker: (context, currentValue) {
                         return showDatePicker(
-                            context: context,
-                            firstDate: DateTime(1900),
-                            initialDate: currentValue ?? DateTime.now(),
-                            lastDate: DateTime(2100),
+                          context: context,
+                          firstDate: DateTime(1900),
+                          initialDate: currentValue ?? DateTime.now(),
+                          lastDate: DateTime.now(),
 
                         );
 
                       },
                       onChanged: (date) {
-                        print("Selected: ${date.month}");
+                        print("Selected: ${date}");
+                        DateF = date.toIso8601String().substring(0, 10);
+                        print('after converto $DateF');
                         _BirtDateDay = date.day ;
                         _BirtDateMonth = date.month;
                         _BirtDateYear = date.year ;
                       },
                     ),
-
-
-
                   ],
 
                 ),
@@ -404,6 +401,7 @@ class _AddPersonFormState extends State<AddPersonForm> {
                           "BirtDateYear": _BirtDateYear.toString(),
                           'Gender': _currentItemSelectedGender.toString(),
                            'Id': _Id,
+                          'DateF': DateF,
 
                         }
 

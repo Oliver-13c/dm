@@ -27,6 +27,7 @@ class _PepleDetailsState extends State<PepleDetails> {
   _displayDialog(BuildContext context) async {
     final Name = widget.snapshot.data['Name'];
     debugPrint('print'+ Name);
+    print(widget.snapshot.data['DateF']);
     return showDialog(
         context: context,
         builder: (context) {
@@ -48,7 +49,7 @@ class _PepleDetailsState extends State<PepleDetails> {
 
             actions: <Widget>[
               new FlatButton(
-                child: new Text('CANCEL'),
+                child: new Text('Guardar'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -151,6 +152,9 @@ class _PepleDetailsState extends State<PepleDetails> {
                   title: Text('Nombre: '+ widget.snapshot.data['Name'] + " " +
                       widget.snapshot.data['LastName'] +" " + widget.snapshot.data['SecondLastName']
                   ),
+                  onTap: (){
+                    _displayDialog(context);
+                  },
 
                 ),
 
@@ -194,14 +198,7 @@ class _PepleDetailsState extends State<PepleDetails> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text("Seguimiento"),
                 ),
-
-
-
-
-
-
               ],
-
             ),
             height: 180.0,
 

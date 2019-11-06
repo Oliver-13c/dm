@@ -2,22 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../PeopleDatails.dart';
+import 'PeopleDatails.dart';
 
 
 
 
 
-class PeopleFilter extends StatefulWidget {
-  final String CurrentReason;
-  PeopleFilter(this.CurrentReason, {Key key}): super(key: key);
+
+class PeopleFilterDate extends StatefulWidget {
+  final String CurrentDate;
+  PeopleFilterDate(this.CurrentDate, {Key key}): super(key: key);
 
 
   @override
-  _PeopleFilterState createState() => _PeopleFilterState();
+  _PeopleFilterDateState createState() => _PeopleFilterDateState();
 }
 
-class _PeopleFilterState extends State<PeopleFilter> {
+class _PeopleFilterDateState extends State<PeopleFilterDate> {
   Stream<QuerySnapshot> _query;
 
 
@@ -25,10 +26,13 @@ class _PeopleFilterState extends State<PeopleFilter> {
   void initState() {
     // TODO: implement initState
     super.initState();
-//    print('instate'+widget.CurrentReason);
+    print('instate'+widget.CurrentDate);
+    var DateF = widget.CurrentDate;
+    print(DateF);
+
     _query = Firestore.instance
         .collection('Visitantes')
-        .where("Reason", isEqualTo: widget.CurrentReason)
+        .where("DateF", isEqualTo: DateF)
         .snapshots();
   }
 
@@ -37,11 +41,12 @@ class _PeopleFilterState extends State<PeopleFilter> {
   @override
   Widget build(BuildContext context) {
 
-    print(widget.CurrentReason);
+    print(widget.CurrentDate);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text ( widget.CurrentReason ),
+        title: Text ( 'Registros de la fecha: '+widget.CurrentDate,
+          style: TextStyle( fontSize: 16.0), ),
 
 
       ),
@@ -110,11 +115,11 @@ class _FilterWidgetState extends State<FilterWidget> {
   @override
   Widget build(BuildContext context) {
 //    print('antes del widget.documents');
-   print(widget.documents[0].data['DateF']);
- var os=  widget.documents[0].data['Date'].toDate();
-
-    String Dt = os.toString().substring(0, 10);
-   print(Dt);
+//    print(widget.documents[0].data['Date']);
+//    var os=  widget.documents[0].data['Date'].toDate();
+//
+//    String Dt = os.toString().substring(0, 10);
+//    print(Dt);
 
 
     return Container(
@@ -127,7 +132,7 @@ class _FilterWidgetState extends State<FilterWidget> {
 
     switch(Reason){
       case 'Apoyo personas discapacitadas':{
-         ColotCH = 0xFF43A047
+        ColotCH = 0xFF43A047
         ;
       }
       break;
