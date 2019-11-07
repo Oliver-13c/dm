@@ -111,7 +111,7 @@ class _ListDisplayState extends State<ListDisplay> {
 
 
           },
-          currentTime: DateTime.now(), locale: LocaleType.en);
+          currentTime: DateTime.now(), locale: LocaleType.es);
           format: DateFormat("yyyy-MM-dd");
 
 
